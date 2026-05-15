@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/nav_graph"
+    xmlns:tools="http://schemas.android.com/tools"
+    app:startDestination="@id/vaultFragment">
+
+    <fragment
+        android:id="@+id/vaultFragment"
+        android:name="com.example.passwordapp.ui.vault.VaultFragment"
+        android:label="Vault">
+        <action
+            android:id="@+id/action_vaultFragment_to_passwordDetailsFragment"
+            app:destination="@id/passwordDetailsFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/searchFragment"
+        android:name="com.example.passwordapp.ui.search.SearchFragment"
+        android:label="Search"
+        tools:layout="@layout/fragment_search"/>
+
+    <fragment
+        android:id="@+id/securityFragment"
+        android:name="com.example.passwordapp.ui.security.SecurityFragment"
+        android:label="Security"/>
+
+    <fragment
+        android:id="@+id/favoritesFragment"
+        android:name="com.example.passwordapp.ui.favorites.FavoritesFragment"
+        android:label="Favorites"/>
+
+    <fragment
+        android:id="@+id/settingsFragment"
+        android:name="com.example.passwordapp.ui.settings.SettingsFragment"
+        android:label="Settings"/>
+
+    <fragment
+        android:id="@+id/addPasswordFragment"
+        android:name="com.example.passwordapp.ui.add.AddPasswordFragment"
+        android:label="Add Password" />
+
+    <fragment
+        android:id="@+id/passwordDetailsFragment"
+        android:name="com.example.passwordapp.ui.details.PasswordDetailsFragment"
+        android:label="Password Details"
+        tools:layout="@layout/fragment_password_details" />
+
+</navigation>

@@ -1,0 +1,11 @@
+<resources>
+    <color name="primary">#2563EB</color>
+    <color name="onPrimary">#FFFFFF</color>
+    <color name="secondary">#0F172A</color>
+    <color name="background">#F8FAFC</color>
+    <color name="surface">#FFFFFF</color>
+    <color name="textPrimary">#111827</color>
+    <color name="textSecondary">#6B7280</color>
+
+    <color name="favorite_inactive">#F59E0B</color>
+</resources>

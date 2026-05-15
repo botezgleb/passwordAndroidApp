@@ -1,0 +1,30 @@
+<resources>
+    <string name="title">Название</string>
+    <string name="username">Username</string>
+    <string name="password">Пароль</string>
+    <string name="category">Категория</string>
+    <string name="save">Сохранить</string>
+    <string name="add_button">Кнопка добавления</string>
+    <string name="search_passwords">Найти пароль</string>
+    <string name="security_dashboard">Статистика безопасности</string>
+    <string name="storage">Хранилище</string>
+    <string name="search">Поиск</string>
+    <string name="favorites">Избранные</string>
+    <string name="settings">Настройки</string>
+    <string name="security">Безопасность</string>
+    <string name="enable_app_lock">Включить блокировку приложений</string>
+    <string name="clear_clipboard_after_copy">Очистить буфер обмена после копирования</string>
+    <string name="theme">Тема</string>
+    <string name="light">Светлая</string>
+    <string name="dark">Темная</string>
+    <string name="about">О приложении</string>
+    <string name="add_to_favorites">Добавить в избранные</string>
+    <string name="generate_password">Сгенерировать пароль</string>
+    <string name="copy_password">Скопировать пароль</string>
+    <string name="don_t_have_an_account">У вас нет аккаунта?</string>
+    <string name="confirm_password">Подтверждите пароль</string>
+    <string name="create_account">Создать аккаунт</string>
+    <string name="already_have_an_account">Уже есть аккаунт?</string>
+    <string name="logout">Выйти</string>
+    <string name="email">Почта</string>
+</resources>

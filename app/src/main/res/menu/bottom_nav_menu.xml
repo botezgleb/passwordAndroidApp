@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/vaultFragment"
+        android:title="Vault"
+        android:icon="@drawable/ic_saved_data"/>
+
+    <item
+        android:id="@+id/searchFragment"
+        android:icon="@drawable/ic_search"
+        android:title="Search" />
+
+    <item
+        android:id="@+id/securityFragment"
+        android:title="Security"
+        android:icon="@drawable/ic_security"/>
+
+    <item
+        android:id="@+id/favoritesFragment"
+        android:title="Favorites"
+        android:icon="@drawable/ic_star_outline"/>
+
+    <item
+        android:id="@+id/settingsFragment"
+        android:title="Settings"
+        android:icon="@drawable/ic_settings"/>
+
+</menu>
