@@ -16,7 +16,7 @@
         android:gravity="center"
         android:paddingTop="24dp"
         android:textAllCaps="true"
-        android:letterSpacing="1"
+        android:letterSpacing="0.5"
         android:paddingBottom="16dp" />
 
     <EditText

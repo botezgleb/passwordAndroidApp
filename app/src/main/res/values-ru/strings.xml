@@ -26,5 +26,6 @@
     <string name="create_account">Создать аккаунт</string>
     <string name="already_have_an_account">Уже есть аккаунт?</string>
     <string name="logout">Выйти</string>
+    <string name="login">Логин</string>
     <string name="email">Почта</string>
 </resources>

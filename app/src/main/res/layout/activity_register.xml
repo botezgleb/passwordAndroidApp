@@ -14,7 +14,8 @@
         android:text="@string/register"
         android:textSize="32sp"
         android:textStyle="bold"
-        android:letterSpacing="1"
+        android:letterSpacing="0.5"
+        android:textAllCaps="true"
         android:layout_marginBottom="32dp"/>
 
     <EditText
