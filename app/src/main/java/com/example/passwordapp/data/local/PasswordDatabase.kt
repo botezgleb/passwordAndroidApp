@@ -7,7 +7,8 @@ import androidx.room.RoomDatabase
 
 @Database(
     entities = [PasswordEntity::class],
-    version = 2
+    version = 2,
+    exportSchema = false
 )
 abstract class PasswordDatabase : RoomDatabase() {
 

@@ -8,9 +8,6 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.passwordapp.R
 import com.example.passwordapp.databinding.FragmentVaultBinding
-import androidx.recyclerview.widget.ItemTouchHelper
-import com.example.passwordapp.data.local.PasswordEntity
-import androidx.recyclerview.widget.RecyclerView
 
 class VaultFragment : Fragment(R.layout.fragment_vault) {
 
@@ -56,39 +53,27 @@ class VaultFragment : Fragment(R.layout.fragment_vault) {
             onFavoriteClick = { password ->
 
                 viewModel.toggleFavorite(password)
-            }
-        )
+            },
 
-        val swipeCallback = object : ItemTouchHelper.SimpleCallback(
-            0,
-            ItemTouchHelper.LEFT or ItemTouchHelper.RIGHT
-        ) {
-            override fun onMove(
-                recyclerView: RecyclerView,
-                viewHolder: RecyclerView.ViewHolder,
-                target: RecyclerView.ViewHolder
-            ): Boolean = false
+            onDeleteClick = { password ->
 
-            override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
+                androidx.appcompat.app.AlertDialog.Builder(requireContext())
+                    .setTitle("Delete password")
+                    .setMessage(
+                        "Are you sure you want to delete this password?"
+                    )
+                    .setPositiveButton("Delete") { _, _ ->
 
-                val password = (binding.passwordRecycler.adapter as PasswordAdapter)
-                    .getItem(viewHolder.adapterPosition)
-
-                when (direction) {
-
-                    ItemTouchHelper.RIGHT -> {
-                        viewModel.toggleFavorite(password)
-                    }
-
-                    ItemTouchHelper.LEFT -> {
                         viewModel.deletePassword(password)
                     }
-                }
-            }
-        }
+                    .setNegativeButton("Cancel", null)
+                    .show()
+            },
 
-        ItemTouchHelper(swipeCallback)
-            .attachToRecyclerView(binding.passwordRecycler)
+            onEditClick = { password ->
+
+            }
+        )
 
         binding.passwordRecycler.layoutManager =
             LinearLayoutManager(requireContext())
@@ -99,43 +84,6 @@ class VaultFragment : Fragment(R.layout.fragment_vault) {
 
             adapter.updatePasswords(it)
         }
-
-        val swipeHandler = object : SwipeCallback() {
-
-            override fun onSwiped(
-                viewHolder: androidx.recyclerview.widget.RecyclerView.ViewHolder,
-                direction: Int
-            ) {
-
-                val position =
-                    viewHolder.adapterPosition
-
-                val password =
-                    adapter.getPasswordAt(position)
-
-                when (direction) {
-
-                    ItemTouchHelper.LEFT -> {
-
-                        viewModel.deletePassword(password)
-                    }
-
-                    ItemTouchHelper.RIGHT -> {
-
-                        viewModel.toggleFavorite(password)
-
-                        adapter.notifyItemChanged(position)
-                    }
-                }
-            }
-        }
-
-        val itemTouchHelper =
-            ItemTouchHelper(swipeHandler)
-
-        itemTouchHelper.attachToRecyclerView(
-            binding.passwordRecycler
-        )
 
         binding.addButton.setOnClickListener {
 
@@ -152,5 +100,3 @@ class VaultFragment : Fragment(R.layout.fragment_vault) {
         _binding = null
     }
 }
-
-fun PasswordViewModel.deletePassword(password: PasswordEntity) {}

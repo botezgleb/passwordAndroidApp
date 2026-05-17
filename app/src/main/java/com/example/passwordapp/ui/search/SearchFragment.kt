@@ -53,11 +53,23 @@ class SearchFragment :
 
                     binding.searchRecycler.adapter =
                         PasswordAdapter(
-                            passwords,
+
+                            passwords = passwords,
+
                             onItemClick = {},
+
                             onFavoriteClick = { password ->
 
                                 viewModel.toggleFavorite(password)
+                            },
+
+                            onDeleteClick = { password ->
+
+                                viewModel.deletePassword(password)
+                            },
+
+                            onEditClick = { password ->
+
                             }
                         )
                 }

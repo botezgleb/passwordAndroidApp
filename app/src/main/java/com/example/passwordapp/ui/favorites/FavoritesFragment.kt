@@ -49,10 +49,25 @@ class FavoritesFragment :
 
             binding.favoritesRecycler.adapter =
                 PasswordAdapter(
-                    it, onItemClick = {}) { password ->
 
-                    viewModel.toggleFavorite(password)
-                }
+                    passwords = it,
+
+                    onItemClick = {},
+
+                    onFavoriteClick = { password ->
+
+                        viewModel.toggleFavorite(password)
+                    },
+
+                    onDeleteClick = { password ->
+
+                        viewModel.deletePassword(password)
+                    },
+
+                    onEditClick = { password ->
+
+                    }
+                )
         }
     }
 

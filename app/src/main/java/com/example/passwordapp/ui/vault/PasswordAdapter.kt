@@ -4,14 +4,16 @@ import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.example.passwordapp.R
 import com.example.passwordapp.data.local.PasswordEntity
 import com.example.passwordapp.databinding.ItemPasswordBinding
-import com.example.passwordapp.R
 
 class PasswordAdapter(
     private var passwords: List<PasswordEntity>,
     private val onItemClick: (PasswordEntity) -> Unit,
-    private val onFavoriteClick: (PasswordEntity) -> Unit
+    private val onFavoriteClick: (PasswordEntity) -> Unit,
+    private val onDeleteClick: (PasswordEntity) -> Unit,
+    private val onEditClick: (PasswordEntity) -> Unit
 ) : RecyclerView.Adapter<PasswordAdapter.PasswordViewHolder>() {
 
     inner class PasswordViewHolder(
@@ -44,6 +46,16 @@ class PasswordAdapter(
             binding.favoriteButton.setOnClickListener {
 
                 onFavoriteClick(password)
+            }
+
+            binding.deleteButton.setOnClickListener {
+
+                onDeleteClick(password)
+            }
+
+            binding.editButton.setOnClickListener {
+
+                onEditClick(password)
             }
         }
     }
@@ -83,16 +95,5 @@ class PasswordAdapter(
         passwords = newPasswords
 
         notifyDataSetChanged()
-    }
-
-    fun getPasswordAt(
-        position: Int
-    ): PasswordEntity {
-
-        return passwords[position]
-    }
-
-    fun getItem(position: Int): PasswordEntity {
-        return passwords[position]
     }
 }
