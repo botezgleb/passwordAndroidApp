@@ -5,12 +5,18 @@ import androidx.room.Dao
 import androidx.room.Delete
 import androidx.room.Insert
 import androidx.room.Query
+import androidx.room.Update
 
 @Dao
 interface PasswordDao {
 
     @Insert
     suspend fun insertPassword(
+        password: PasswordEntity
+    )
+
+    @Update
+    suspend fun updatePassword(
         password: PasswordEntity
     )
 
@@ -30,7 +36,7 @@ interface PasswordDao {
     suspend fun updateFavoriteStatus(
         id: Int,
         isFavorite: Boolean
-    )
+    ): Int
 
     @Query("""
         SELECT * FROM passwords

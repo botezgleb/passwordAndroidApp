@@ -77,6 +77,16 @@ class PasswordDetailsFragment :
                         Toast.LENGTH_SHORT
                     ).show()
                 }
+
+                binding.editButton.setOnClickListener {
+                    val bundle = Bundle().apply {
+                        putInt("passwordId", passwordId)
+                    }
+                    findNavController().navigate(
+                        R.id.addPasswordFragment,
+                        bundle
+                    )
+                }
             }
         }
 

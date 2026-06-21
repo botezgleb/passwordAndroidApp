@@ -18,6 +18,12 @@ class PasswordRepository(
         dao.insertPassword(password)
     }
 
+    suspend fun updatePassword(
+        password: PasswordEntity
+    ) {
+        dao.updatePassword(password)
+    }
+
     suspend fun updateFavoriteStatus(
         id: Int,
         isFavorite: Boolean

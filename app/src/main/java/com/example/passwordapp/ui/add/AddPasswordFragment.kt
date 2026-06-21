@@ -34,6 +34,23 @@ class AddPasswordFragment : Fragment(R.layout.fragment_add_password) {
 
         _binding = FragmentAddPasswordBinding.bind(view)
 
+        val passwordId = arguments?.getInt("passwordId") ?: -1
+
+        if (passwordId != -1) {
+            binding.toolbar.title = "Edit Password"
+            binding.saveButton.text = "Update"
+
+            viewModel.passwords.observe(viewLifecycleOwner) { list ->
+                list.find { it.id == passwordId }?.let { entity ->
+                    binding.titleEdit.setText(entity.title)
+                    binding.usernameEdit.setText(entity.username)
+                    binding.passwordEdit.setText(entity.password)
+                    binding.categoryEdit.setText(entity.category)
+                    binding.favoriteCheck.isChecked = entity.isFavorite
+                }
+            }
+        }
+
         binding.generateButton.setOnClickListener {
 
             val generated = generatePassword(16)
@@ -122,15 +139,26 @@ class AddPasswordFragment : Fragment(R.layout.fragment_add_password) {
             val isFavorite =
                 binding.favoriteCheck.isChecked
 
-            val password = PasswordEntity(
-                title = title,
-                username = username,
-                password = passwordText,
-                category = category,
-                isFavorite = isFavorite
-            )
-
-            viewModel.addPassword(password)
+            if (passwordId != -1) {
+                val password = PasswordEntity(
+                    id = passwordId,
+                    title = title,
+                    username = username,
+                    password = passwordText,
+                    category = category,
+                    isFavorite = isFavorite
+                )
+                viewModel.updatePassword(password)
+            } else {
+                val password = PasswordEntity(
+                    title = title,
+                    username = username,
+                    password = passwordText,
+                    category = category,
+                    isFavorite = isFavorite
+                )
+                viewModel.addPassword(password)
+            }
 
             findNavController().popBackStack()
         }

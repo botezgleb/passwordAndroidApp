@@ -71,7 +71,13 @@ class VaultFragment : Fragment(R.layout.fragment_vault) {
             },
 
             onEditClick = { password ->
-
+                val bundle = Bundle().apply {
+                    putInt("passwordId", password.id)
+                }
+                findNavController().navigate(
+                    R.id.addPasswordFragment,
+                    bundle
+                )
             }
         )
 

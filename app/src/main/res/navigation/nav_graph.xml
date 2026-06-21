@@ -39,12 +39,21 @@
     <fragment
         android:id="@+id/addPasswordFragment"
         android:name="com.example.passwordapp.ui.add.AddPasswordFragment"
-        android:label="Add Password" />
+        android:label="Add Password" >
+        <argument
+            android:name="passwordId"
+            app:argType="integer"
+            android:defaultValue="-1" />
+    </fragment>
 
     <fragment
         android:id="@+id/passwordDetailsFragment"
         android:name="com.example.passwordapp.ui.details.PasswordDetailsFragment"
         android:label="Password Details"
-        tools:layout="@layout/fragment_password_details" />
+        tools:layout="@layout/fragment_password_details" >
+        <action
+            android:id="@+id/action_passwordDetailsFragment_to_addPasswordFragment"
+            app:destination="@id/addPasswordFragment" />
+    </fragment>
 
 </navigation>

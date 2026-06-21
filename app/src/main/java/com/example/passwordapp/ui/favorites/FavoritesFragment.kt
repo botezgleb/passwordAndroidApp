@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.passwordapp.R
 import com.example.passwordapp.databinding.FragmentFavoritesBinding
@@ -52,7 +53,15 @@ class FavoritesFragment :
 
                     passwords = it,
 
-                    onItemClick = {},
+                    onItemClick = { password ->
+                        val bundle = Bundle().apply {
+                            putInt("passwordId", password.id)
+                        }
+                        findNavController().navigate(
+                            R.id.passwordDetailsFragment,
+                            bundle
+                        )
+                    },
 
                     onFavoriteClick = { password ->
 
@@ -65,7 +74,13 @@ class FavoritesFragment :
                     },
 
                     onEditClick = { password ->
-
+                        val bundle = Bundle().apply {
+                            putInt("passwordId", password.id)
+                        }
+                        findNavController().navigate(
+                            R.id.addPasswordFragment,
+                            bundle
+                        )
                     }
                 )
         }

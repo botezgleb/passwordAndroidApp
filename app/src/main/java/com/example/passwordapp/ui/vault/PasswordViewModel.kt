@@ -39,6 +39,16 @@ class PasswordViewModel(
         }
     }
 
+    fun updatePassword(
+        password: PasswordEntity
+    ) {
+
+        viewModelScope.launch {
+
+            repository.updatePassword(password)
+        }
+    }
+
     fun toggleFavorite(
         password: PasswordEntity
     ) {
