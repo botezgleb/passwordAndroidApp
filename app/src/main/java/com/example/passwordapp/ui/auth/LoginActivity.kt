@@ -1,9 +1,11 @@
 package com.example.passwordapp.ui.auth
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatDelegate
 import com.example.passwordapp.MainActivity
 import com.example.passwordapp.databinding.ActivityLoginBinding
 import com.google.firebase.auth.FirebaseAuth
@@ -21,6 +23,15 @@ class LoginActivity : AppCompatActivity() {
     ) {
 
         super.onCreate(savedInstanceState)
+
+        // Apply theme from settings
+        val sharedPrefs = getSharedPreferences("settings", Context.MODE_PRIVATE)
+        val isDarkMode = sharedPrefs.getBoolean("dark_mode", false)
+        if (isDarkMode) {
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
+        } else {
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
+        }
 
         binding =
             ActivityLoginBinding.inflate(layoutInflater)

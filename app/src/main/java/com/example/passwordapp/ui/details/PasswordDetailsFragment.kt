@@ -8,11 +8,14 @@ import android.view.View
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.example.passwordapp.R
 import com.example.passwordapp.databinding.FragmentPasswordDetailsBinding
 import com.example.passwordapp.ui.vault.PasswordViewModel
 import com.example.passwordapp.ui.vault.PasswordViewModelFactory
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 
 class PasswordDetailsFragment :
     Fragment(R.layout.fragment_password_details) {
@@ -76,6 +79,25 @@ class PasswordDetailsFragment :
                         "Password copied",
                         Toast.LENGTH_SHORT
                     ).show()
+
+                    val sharedPrefs = requireContext().getSharedPreferences("settings", Context.MODE_PRIVATE)
+                    val clearClipboard = sharedPrefs.getBoolean("clear_clipboard", true)
+
+                    if (clearClipboard) {
+                        viewLifecycleOwner.lifecycleScope.launch {
+                            delay(30000) // 30 seconds
+                            if (clipboard.primaryClip?.getItemAt(0)?.text == passwordEntity.password) {
+                                clipboard.setPrimaryClip(ClipData.newPlainText("", ""))
+                                if (isAdded) {
+                                    Toast.makeText(
+                                        requireContext(),
+                                        "Clipboard cleared",
+                                        Toast.LENGTH_SHORT
+                                    ).show()
+                                }
+                            }
+                        }
+                    }
                 }
 
                 binding.editButton.setOnClickListener {
